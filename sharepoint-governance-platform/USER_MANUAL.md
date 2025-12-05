@@ -1,5 +1,11 @@
 # SharePoint Governance Platform - User Manual
 
+**Developed and Maintained by: Jyotirmoy Bhowmik**  
+📧 jyotirmoy.bhowmik@company.com | 💻 GitHub: @JyotirmoyBhowmik  
+**Version**: 3.0.0 | **Last Updated**: December 5, 2025
+
+---
+
 ## Table of Contents
 1. [Getting Started](#getting-started)
 2. [For Site Owners](#for-site-owners)

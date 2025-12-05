@@ -1,5 +1,10 @@
 # SharePoint Online Governance Platform
 
+**Developed and Maintained by: Jyotirmoy Bhowmik**  
+📧 jyotirmoy.bhowmik@company.com | 💻 [GitHub](https://github.com/JyotirmoyBhowmik)
+
+---
+
 ## 🎉 **PROJECT COMPLETE - ALL 3 PHASES DELIVERED**
 
 **Status**: Production Ready ✅ | **Version**: 3.0.0 | **Completed**: December 2025

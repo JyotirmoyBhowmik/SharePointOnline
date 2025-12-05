@@ -1,12 +1,33 @@
 """
-Main FastAPI application entry point
+SharePoint Online Governance Platform - Main Application Entry Point
+====================================================================
+
+Author: Jyotirmoy Bhowmik
+Email: jyotirmoy.bhowmik@company.com  
+Version: 3.0.0
+Created: 2025
+Last Modified: December 5, 2025
+
+Description:
+    FastAPI application entry point for the SharePoint Governance Platform.
+    Initializes the REST API, configures middleware, sets up background jobs,
+    and exposes endpoints for governance, audit, and compliance operations.
+
+Maintained by: Jyotirmoy Bhowmik
 """
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.gzip import GZipMiddleware # Added this import based on the instruction's context
+
+# Standard library imports
+from datetime import datetime
 from contextlib import asynccontextmanager
 import logging
 
+# Third-party imports - FastAPI framework and utilities
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator, make_asgi_app
+
+# Application imports - Configuration and routing
 from app.core.config import settings
 from app.core.logging import setup_logging
 from app.api.v1 import api_router

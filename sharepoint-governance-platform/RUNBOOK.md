@@ -1,5 +1,10 @@
 # SharePoint Governance Platform - Operations Runbook
 
+**Developed and Maintained by: Jyotirmoy Bhowmik**  
+📧 jyotirmoy.bhowmik@company.com | **Version**: 3.0.0
+
+---
+
 ## Table of Contents
 1. [Common Operations](#common-operations)
 2. [Troubleshooting](#troubleshooting)

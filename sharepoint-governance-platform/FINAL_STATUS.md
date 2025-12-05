@@ -1,4 +1,9 @@
-# SharePoint Governance Platform - FINAL PROJECT STATUS
+# SharePoint Governance Platform - Final Project Status
+
+**Developed and Maintained by: Jyotirmoy Bhowmik**  
+📧 jyotirmoy.bhowmik@company.com | 💻 GitHub: @JyotirmoyBhowmik
+
+---
 
 ## 🎉 PROJECT COMPLETE - ALL PHASES DELIVERED
 
