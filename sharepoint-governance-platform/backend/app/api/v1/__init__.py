@@ -3,13 +3,14 @@ API Router aggregating all endpoint modules
 """
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import auth, sites, access_reviews, audit, dashboard, two_factor
+from app.api.v1.endpoints import auth, sites, access_reviews, audit, dashboard, two_factor, setup
 
 api_router = APIRouter()
 
 # Include endpoint routers
 api_router.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 api_router.include_router(two_factor.router, prefix="/2fa", tags=["Two-Factor Authentication"])
+api_router.include_router(setup.router, prefix="/setup", tags=["Setup Wizard"])
 api_router.include_router(sites.router, prefix="/sites", tags=["Sites"])
 api_router.include_router(access_reviews.router, prefix="/access-reviews", tags=["Access Reviews"])
 api_router.include_router(audit.router, prefix="/audit", tags=["Audit & Compliance"])
@@ -26,6 +27,7 @@ async def root():
         "endpoints": {
             "auth": "/api/v1/auth",
             "2fa": "/api/v1/2fa",
+            "setup": "/api/v1/setup",
             "sites": "/api/v1/sites",
             "access_reviews": "/api/v1/access-reviews",
             "audit": "/api/v1/audit",
