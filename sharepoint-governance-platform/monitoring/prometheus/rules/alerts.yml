@@ -1,0 +1,146 @@
+# Alert rules for SharePoint Governance Platform
+groups:
+  - name: application_alerts
+    interval: 30s
+    rules:
+      # Backend API health
+      - alert: BackendDown
+        expr: up{job="backend"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend API is down"
+          description: "Backend service {{ $labels.instance }} has been down for more than 2 minutes"
+
+      # High error rate
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} on {{ $labels.instance }}"
+
+      # Slow response time
+      - alert: SlowResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API response time is slow"
+          description: "95th percentile response time is {{ $value }}s on {{ $labels.instance }}"
+
+  - name: database_alerts
+    interval: 30s
+    rules:
+      # Database down
+      - alert: PostgreSQLDown
+        expr: up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "PostgreSQL is down"
+          description: "PostgreSQL database has been down for more than 1 minute"
+
+      # High connection usage
+      - alert: HighDatabaseConnections
+        expr: pg_stat_database_numbackends / pg_settings_max_connections > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Database connection usage is high"
+          description: "Database connections at {{ $value | humanizePercentage }} capacity"
+
+      # Slow queries
+      - alert: SlowDatabaseQueries
+        expr: rate(pg_stat_activity_max_tx_duration[5m]) > 60
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow database queries detected"
+          description: "Long-running queries detected, max duration {{ $value }}s"
+
+  - name: cache_alerts
+    interval: 30s
+    rules:
+      # Redis down
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis cache is down"
+          description: "Redis has been down for more than 2 minutes"
+
+      # High memory usage
+      - alert: RedisHighMemory
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis memory usage is high"
+          description: "Redis memory at {{ $value | humanizePercentage }} capacity"
+
+  - name: storage_alerts
+    interval: 60s
+    rules:
+      # Disk space low
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.15
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disk space is running low"
+          description: "Disk {{ $labels.mountpoint }} has less than 15% free space"
+
+      # Disk space critical
+      - alert: DiskSpaceCritical
+        expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.05
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Disk space is critically low"
+          description: "Disk {{ $labels.mountpoint }} has less than 5% free space - IMMEDIATE ACTION REQUIRED"
+
+  - name: business_alerts
+    interval: 60s
+    rules:
+      # Overdue access reviews
+      - alert: OverdueAccessReviews
+        expr: access_review_overdue_count > 10
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "Multiple overdue access reviews"
+          description: "{{ $value }} access reviews are overdue"
+
+      # High anomaly count
+      - alert: HighAnomalyDetectionCount
+        expr: anomaly_detection_count_24h > 50
+        for: 30m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of anomalies detected"
+          description: "{{ $value }} anomalies detected in the last 24 hours"
+
+      # Site discovery failures
+      - alert: SiteDiscoveryFailures
+        expr: site_discovery_failures_total > 5
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Site discovery job is failing"
+          description: "Site discovery has failed {{ $value }} times consecutively"

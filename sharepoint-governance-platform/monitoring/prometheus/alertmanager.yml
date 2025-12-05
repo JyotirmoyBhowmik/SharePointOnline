@@ -1,0 +1,68 @@
+# Alertmanager Configuration
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.company.com:587'
+  smtp_from: 'alerts@company.com'
+  smtp_auth_username: 'alerts@company.com'
+  smtp_auth_password: 'password'
+
+# Route alerts to different receivers
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 12h
+  receiver: 'default'
+  
+  routes:
+    # Critical alerts to PagerDuty
+    - match:
+        severity: critical
+      receiver: 'pagerduty'
+      continue: true
+    
+    # All alerts to email
+    - match_re:
+        severity: (critical|warning)
+      receiver: 'email'
+    
+    # All alerts to Slack
+    - match_re:
+        severity: .*
+      receiver: 'slack'
+
+# Receivers
+receivers:
+  - name: 'default'
+    email_configs:
+      - to: 'platform-team@company.com'
+        send_resolved: true
+
+  - name: 'email'
+    email_configs:
+      - to: 'platform-team@company.com'
+        send_resolved: true
+        headers:
+          Subject: '[{{ .Status }}] SharePoint Governance Alert: {{ .GroupLabels.alertname }}'
+
+  - name: 'slack'
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'
+        channel: '#sharepoint-governance-alerts'
+        title: '{{ .GroupLabels.alertname }}'
+        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+        send_resolved: true
+
+  - name: 'pagerduty'
+    pagerduty_configs:
+      - service_key: 'YOUR_PAGERDUTY_SERVICE_KEY'
+        description: '{{ .GroupLabels.alertname }}'
+
+# Inhibition rules (suppress certain alerts)
+inhibit_rules:
+  # Suppress warning if critical alert is firing
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'cluster', 'service']

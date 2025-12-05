@@ -1,0 +1,111 @@
+{
+    "dashboard": {
+        "title": "SharePoint Governance Platform - Overview",
+        "tags": [
+            "sharepoint",
+            "governance"
+        ],
+        "timezone": "browser",
+        "panels": [
+            {
+                "title": "API Request Rate",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "rate(http_requests_total[5m])",
+                        "legendFormat": "{{method}} {{path}}"
+                    }
+                ]
+            },
+            {
+                "title": "API Response Time (95th percentile)",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+                        "legendFormat": "95th percentile"
+                    }
+                ]
+            },
+            {
+                "title": "Error Rate",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
+                        "legendFormat": "5xx errors"
+                    },
+                    {
+                        "expr": "rate(http_requests_total{status=~\"4..\"}[5m])",
+                        "legendFormat": "4xx errors"
+                    }
+                ]
+            },
+            {
+                "title": "Active Sites",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "sharepoint_sites_total{is_archived=\"false\"}"
+                    }
+                ]
+            },
+            {
+                "title": "Pending Access Reviews",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "access_reviews_pending_total"
+                    }
+                ]
+            },
+            {
+                "title": "Anomalies Detected (24h)",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "anomaly_detection_count_24h"
+                    }
+                ]
+            },
+            {
+                "title": "Database Connections",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "pg_stat_database_numbackends",
+                        "legendFormat": "Active connections"
+                    },
+                    {
+                        "expr": "pg_settings_max_connections",
+                        "legendFormat": "Max connections"
+                    }
+                ]
+            },
+            {
+                "title": "Redis Memory Usage",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "redis_memory_used_bytes",
+                        "legendFormat": "Used"
+                    },
+                    {
+                        "expr": "redis_memory_max_bytes",
+                        "legendFormat": "Max"
+                    }
+                ]
+            },
+            {
+                "title": "Background Job Success Rate",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "rate(background_job_success_total[1h]) / rate(background_job_total[1h])",
+                        "legendFormat": "{{job_name}}"
+                    }
+                ]
+            }
+        ]
+    }
+}
