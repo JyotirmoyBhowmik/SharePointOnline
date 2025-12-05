@@ -6,6 +6,8 @@ from app.models.site import SharePointSite, SiteOwnership, AccessMatrix, SiteCla
 from app.models.access_review import AccessReviewCycle, AccessReviewItem, ReviewStatus, AccessDecision
 from app.models.audit import AuditLog, AdminActionLog, AdminActionType, AdminActionStatus
 from app.models.retention import DocumentLibrary, RecycleBinItem, RetentionPolicy, RetentionExclusion
+from app.models.two_factor import UserTwoFactor, TrustedDevice, SetupWizardStatus
+
 
 __all__ = [
     # User
@@ -35,4 +37,10 @@ __all__ = [
     "RecycleBinItem",
     "RetentionPolicy",
     "RetentionExclusion",
+    
+    # Two-Factor Authentication
+    "UserTwoFactor",
+    "TrustedDevice",
+    "SetupWizardStatus",
 ]
+

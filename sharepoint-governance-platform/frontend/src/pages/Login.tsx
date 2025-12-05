@@ -18,7 +18,7 @@ export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch<AppDispatch>()
-    const navigate = navigate()
+    const navigate = useNavigate()
     const { isLoading, error } = useSelector((state: RootState) => state.auth)
 
     const handleSubmit = async (e: React.FormEvent) => {

@@ -10,7 +10,7 @@
  *   Shows key metrics like total sites, pending reviews, storage usage, and anomalies.
  */
 
-import React from 'react';
+import { FC } from 'react';
 import { Grid, Container, Typography, Box } from '@mui/material';
 import MetricWidget from '../components/MetricWidget';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -19,7 +19,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import CloudIcon from '@mui/icons-material/Cloud';
 import api from '../services/api';
 
-const LiveMetricsDashboard: React.FC = () => {
+const LiveMetricsDashboard: FC = () => {
     // Fetch functions for each metric
     const fetchTotalSites = async (): Promise<number> => {
         const response = await api.get('/v1/dashboard/overview');

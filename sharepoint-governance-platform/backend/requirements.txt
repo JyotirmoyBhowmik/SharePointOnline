@@ -28,6 +28,10 @@ ldap3==2.9.1
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
+pyotp==2.9.0  # TOTP for 2FA
+qrcode==7.4.2  # QR code generation for 2FA
+cryptography==41.0.7  # Enhanced encryption
+
 
 # Background Jobs
 apscheduler==3.10.4
