@@ -17,7 +17,7 @@ import {
     DialogContent,
     DialogActions,
 } from '@mui/material'
-import { ContentCopy, Help, CheckCircle } from '@mui/icons-material'
+import { Help, CheckCircle } from '@mui/icons-material'
 
 const steps = [
     'Welcome',
