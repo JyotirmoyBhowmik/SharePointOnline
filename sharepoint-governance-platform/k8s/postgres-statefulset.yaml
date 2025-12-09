@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: spg-db
+  namespace: sharepoint-gov-platform
+spec:
+  selector:
+    matchLabels:
+      app: spg-db
+  serviceName: "spg-db"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spg-db
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15-alpine
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretRef:
+              name: spg-secrets
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretRef:
+              name: spg-secrets
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapRef:
+              name: spg-config
+              key: POSTGRES_DB
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-U", "spg_user", "-d", "spg_db"]
+          initialDelaySeconds: 5
+          periodSeconds: 10
+  volumeClaimTemplates:
+  - metadata:
+    name: postgres-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spg-db
+  namespace: sharepoint-gov-platform
+spec:
+  selector:
+    app: spg-db
+  ports:
+  - port: 5432
+    targetPort: 5432
+  clusterIP: None

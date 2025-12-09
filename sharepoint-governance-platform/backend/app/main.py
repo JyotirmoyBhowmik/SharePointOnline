@@ -91,6 +91,12 @@ app.include_router(api_router, prefix="/api/v1")
 app.include_router(api_v2_router, prefix="/api/v2")
 app.include_router(api_v3_router, prefix="/api/v3")
 
+# [DEV MODULE] Conditionally include development router
+if settings.DEBUG:
+    from app.api.dev_router import router as dev_router
+    app.include_router(dev_router, prefix="/api/dev", tags=["Development"])
+    logger.info("Dev module enabled: /api/dev/seed")
+
 # Prometheus metrics endpoint
 metrics_app = make_asgi_app()
 app.mount("/metrics", metrics_app)

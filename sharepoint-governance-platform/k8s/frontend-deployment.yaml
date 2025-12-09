@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-ui
+  namespace: sharepoint-gov-platform
+  labels:
+    app: frontend-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-ui
+  template:
+    metadata:
+      labels:
+        app: frontend-ui
+    spec:
+      containers:
+      - name: frontend-ui
+        image: sharepoint-governance-frontend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://backend-api"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-ui
+  namespace: sharepoint-gov-platform
+spec:
+  selector:
+    app: frontend-ui
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: ClusterIP

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spg-config
+  namespace: sharepoint-gov-platform
+data:
+  ENVIRONMENT: "production"
+  API_V1_STR: "/api/v1"
+  PROJECT_NAME: "SharePoint Governance Platform"
+  POSTGRES_SERVER: "spg-db"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "spg_db"
+  ML_SERVICE_URL: "http://ml-service"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: spg-secrets
+  namespace: sharepoint-gov-platform
+type: Opaque
+stringData:
+  POSTGRES_USER: "spg_user"
+  POSTGRES_PASSWORD: "CHANGE_ME_IN_PROD"
+  SECRET_KEY: "CHANGE_ME_IN_PROD_SECRET_KEY"
+  REDIS_URL: "redis://spg-redis:6379/0"

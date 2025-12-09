@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spg-redis
+  namespace: sharepoint-gov-platform
+  labels:
+    app: spg-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spg-redis
+  template:
+    metadata:
+      labels:
+        app: spg-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        command: ["redis-server", "--appendonly", "yes"]
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+      volumes:
+      - name: redis-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spg-redis
+  namespace: sharepoint-gov-platform
+spec:
+  selector:
+    app: spg-redis
+  ports:
+  - port: 6379
+    targetPort: 6379
+  type: ClusterIP

@@ -36,10 +36,10 @@ An automated governance platform that provides:
 | **Cost Savings** | $250K+ annually in labor and risk mitigation |
 
 ### Investment Required
-- **POC Duration:** 8 weeks
-- **POC Budget:** $75,000
-- **Implementation (if approved):** $250,000
-- **Annual Operating Cost:** $50,000
+- **POC Duration:** 10 weeks (extended for AI/ML and advanced features)
+- **POC Budget:** $150,000 (includes AI/ML, K8s setup, observability stack)
+- **Implementation (if approved):** $750,000 (enterprise-scale with HA/DR)
+- **Annual Operating Cost:** $150,000 (includes cloud infrastructure, AI/ML ops, 24/7 monitoring)
 
 ### Recommendation
 **Approve POC** to validate solution capabilities, measure ROI, and prepare for enterprise rollout.
@@ -534,7 +534,726 @@ This initiative aligns with:
 - Trusted device management
 - Backup code recovery
 
+### 3.5 AI/ML Architecture & Capabilities
+
+**Strategic Vision:**
+The platform leverages artificial intelligence and machine learning to transform reactive governance into predictive risk management, enabling proactive decision-making and intelligent automation at enterprise scale.
+
+#### 3.5.1 ML Infrastructure Architecture
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                         AI/ML Pipeline Architecture                    │
+├────────────────────────────────────────────────────────────────────────┤
+│                                                                        │
+│  ┌──────────────────────────────────────────────────────────────┐    │
+│  │                    Data Ingestion Layer                       │    │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │    │
+│  │  │ SharePoint  │  │  Audit      │  │  User       │          │    │
+│  │  │ Activity    │  │  Logs       │  │  Behavior   │          │    │
+│  │  │ Logs        │  │             │  │  Data       │          │    │
+│  │  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘          │    │
+│  └─────────┼─────────────────┼─────────────────┼────────────────┘    │
+│            │                 │                 │                      │
+│  ┌─────────▼─────────────────▼─────────────────▼────────────────┐    │
+│  │              Feature Engineering Pipeline                     │    │
+│  │  ┌────────────────────────────────────────────────────┐      │    │
+│  │  │  Apache Spark / Pandas Processing                  │      │    │
+│  │  │  - Data cleaning & normalization                   │      │    │
+│  │  │  - Feature extraction (behavioral patterns)        │      │    │
+│  │  │  - Time-series aggregation                         │      │    │
+│  │  │  - Anomaly feature computation                     │      │    │
+│  │  └────────────────────────────────────────────────────┘      │    │
+│  └────────────────────────────┬───────────────────────────────────    │
+│                                │                                      │
+│  ┌─────────────────────────────▼──────────────────────────────────┐  │
+│  │                    ML Model Training                            │  │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │  │
+│  │  │  Risk        │  │  Anomaly     │  │ Access       │         │  │
+│  │  │  Prediction  │  │  Detection   │  │ Pattern      │         │  │
+│  │  │  Model       │  │  (Isolation  │  │ Clustering   │         │  │
+│  │  │ (XGBoost)    │  │   Forest)    │  │ (K-Means)    │         │  │
+│  │  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘         │  │
+│  │         │                  │                  │                 │  │
+│  │  ┌──────▼──────────────────▼──────────────────▼───────┐        │  │
+│  │  │         MLflow Model Registry                       │        │  │
+│  │  │  - Version control                                 │        │  │
+│  │  │  - A/B testing framework                           │        │  │
+│  │  │  - Model performance tracking                      │        │  │
+│  │  └────────────────────────┬───────────────────────────┘        │  │
+│  └─────────────────────────────┼──────────────────────────────────┘  │
+│                                │                                      │
+│  ┌─────────────────────────────▼──────────────────────────────────┐  │
+│  │                   Model Serving Layer                           │  │
+│  │  ┌────────────────────────────────────────────────────┐        │  │
+│  │  │  TensorFlow Serving / Seldon Core                  │        │  │
+│  │  │  - Real-time inference API                         │        │  │
+│  │  │  - Auto-scaling based on load                      │        │  │
+│  │  │  - Multi-model deployment                          │        │  │
+│  │  └────────────────────────┬───────────────────────────┘        │  │
+│  └─────────────────────────────┼──────────────────────────────────┘  │
+│                                │                                      │
+│  ┌─────────────────────────────▼──────────────────────────────────┐  │
+│  │                    Application Layer                            │  │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │  │
+│  │  │  Dashboards  │  │  Alerts      │  │ Auto-        │         │  │
+│  │  │  (Insights)  │  │  (Anomalies) │  │ Remediation  │         │  │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘         │  │
+│  └─────────────────────────────────────────────────────────────────  │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 3.5.2 Predictive Analytics Capabilities
+
+**1. Risk Prediction Models**
+- **Security Breach Risk Scoring**
+  - Analyzes permission patterns, external sharing, and access anomalies
+  - Predicts probability of security incidents by site/user
+  - 85%+ accuracy based on historical incident data
+  
+- **Compliance Violation Forecasting**
+  - Identifies sites trending toward non-compliance
+  - Predicts policy violations 30-60 days in advance
+  - Enables proactive remediation
+
+- **Permission Sprawl Prediction**
+  - Forecasts permission complexity growth
+  - Identifies sites requiring immediate attention
+  - Recommends optimal permission structures
+
+**2. Anomaly Detection (Unsupervised Learning)**
+- **Behavioral Baselines**
+  - Establishes normal access patterns per user/site
+  - Detects unusual activity (time, location, volume)
+  - Triggers real-time alerts for suspicious behavior
+
+- **Permission Anomalies**
+  - Identifies outliers in permission grants
+  - Detects privilege escalation attempts
+  - Flags dormant accounts with high privileges
+
+- **Data Access Patterns**
+  - Detects unusual file access patterns
+  - Identifies potential data exfiltration
+  - Monitors bulk download activities
+
+**3. Intelligent Recommendations**
+- **Automated Policy Suggestions**
+  - ML-driven policy recommendations based on industry benchmarks
+  - Customized policies based on organizational patterns
+  - Continuous policy optimization
+
+- **Access Review Prioritization**
+  - Risk-scores users/permissions for review prioritization
+  - Reduces review workload by 70% through intelligent filtering
+  - Automated low-risk access certification
+
+#### 3.5.3 Natural Language Processing (NLP)
+
+**1. Natural Language Query Interface**
+```
+User Query Examples:
+- "Show me all sites with external sharing enabled in Finance"
+- "Which users have access to sensitive HR data?"
+- "What permissions changed in the last 24 hours?"
+
+NLP Pipeline:
+User Query → Intent Recognition → Entity Extraction → Query Translation → Results
+```
+
+**2. Document Classification**
+- **Automated Sensitivity Classification**
+  - Scans document content for PII, PHI, financial data
+  - Auto-applies retention and protection policies
+  - Compliance with GDPR, HIPAA data classification
+
+- **Intelligent Tagging**
+  - Extracts topics and keywords from documents
+  - Enables advanced search and discovery
+  - Improves data governance through metadata enrichment
+
+**3. Compliance Documentation Analysis**
+- **Regulatory Change Detection**
+  - Monitors regulatory updates (GDPR, HIPAA, SOX)
+  - Suggests policy adjustments
+  - Automated compliance gap analysis
+
+#### 3.5.4 MLOps Infrastructure
+
+**1. Model Training Pipeline**
+- **Automated Retraining**
+  - Scheduled model retraining (weekly/monthly)
+  - Trigger-based retraining on data drift detection
+  - Continuous model improvement
+
+- **Feature Store**
+  - Centralized feature management
+  - Feature versioning and lineage tracking
+  - Real-time and batch feature serving
+
+**2. Model Monitoring**
+- **Performance Tracking**
+  - Precision, recall, F1-score monitoring
+  - Model drift detection
+  - Automated rollback on performance degradation
+
+- **Explainability (XAI)**
+  - SHAP values for model interpretability
+  - Feature importance visualization
+  - Audit trail for AI-driven decisions
+
+**3. A/B Testing Framework**
+- **Multi-variant Testing**
+  - Deploy multiple model versions
+  - Compare performance in production
+  - Data-driven model selection
+
+#### 3.5.5 AI-Driven Automation
+
+**1. Intelligent Alert Correlation**
+- Reduces alert noise by 80% through correlation
+- Groups related security events
+- Prioritizes high-impact incidents
+
+**2. Auto-Remediation**
+- **Rule-Based Actions**
+  - Automatic permission revocation for policy violations
+  - Temporary access suspension on suspicious activity
+  - Automated ticket creation for compliance issues
+
+- **ML-Recommended Actions**
+  - Suggests remediation steps with confidence scores
+  - Human-in-the-loop for critical decisions
+  - Learning from admin actions to improve recommendations
+
+**3. Capacity Planning**
+- **Storage Growth Forecasting**
+  - Predicts storage needs 3-6 months in advance
+  - Optimizes retention policies
+  - Cost optimization recommendations
+
+- **User Activity Prediction**
+  - Forecasts peak usage periods
+  - Enables proactive resource scaling
+  - Improves system availability
+
 ---
+
+### 3.6 Enterprise Integration Architecture
+
+#### 3.6.1 API Gateway & Service Mesh
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                     API Gateway Layer                          │
+│              (Kong / Azure API Management)                     │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │              Gateway Capabilities                     │    │
+│  │  - Rate Limiting (1000 req/min per client)           │    │
+│  │  - API Key Management & Rotation                     │    │
+│  │  - OAuth 2.0 / OpenID Connect                        │    │
+│  │  - Request/Response Transformation                   │    │
+│  │  - API Versioning (v1, v2, v3)                       │    │
+│  │  - Circuit Breaker Pattern                           │    │
+│  │  - Request Caching & Compression                     │    │
+│  └──────────────────────────────────────────────────────┘    │
+│                            │                                   │
+└────────────────────────────┼───────────────────────────────────┘
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+┌─────────▼─────────┐ ┌──────▼──────┐ ┌────────▼────────┐
+│  Auth Service     │ │ Site Service│ │ Analytics Svc   │
+│  (Port: 8001)     │ │ (Port: 8002)│ │ (Port: 8003)    │
+└─────────┬─────────┘ └──────┬──────┘ └────────┬────────┘
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             │
+                    ┌────────▼────────┐
+                    │   Service Mesh  │
+                    │  (Istio/Linkerd)│
+                    ├─────────────────┤
+                    │ - mTLS          │
+                    │ - Load Balance  │
+                    │ - Retry Logic   │
+                    │ - Observability │
+                    └─────────────────┘
+```
+
+**Benefits:**
+- **Security**: Centralized authentication, mTLS between services
+- **Resilience**: Circuit breakers, automatic retries, failover
+- **Observability**: Distributed tracing, traffic metrics
+- **Scalability**: Independent service scaling, load balancing
+
+#### 3.6.2 Microservices Architecture
+
+**Service Decomposition:**
+
+| Service | Responsibility | Tech Stack | Scaling Strategy |
+|---------|---------------|------------|------------------|
+| **Auth Service** | Authentication, 2FA, JWT | FastAPI, Redis | Horizontal (3-10 pods) |
+| **Site Service** | SharePoint site operations | FastAPI, PostgreSQL | Horizontal (5-20 pods) |
+| **Compliance Service** | Policy evaluation, checks | FastAPI, Rules Engine | Horizontal (3-15 pods) |
+| **Analytics Service** | Metrics, dashboards, reports | FastAPI, TimescaleDB | Vertical + Horizontal |
+| **ML Service** | Model inference, predictions | FastAPI, TensorFlow | GPU-enabled pods |
+| **Notification Service** | Email, alerts, webhooks | Python, Celery | Queue-based scaling |
+| **Audit Service** | Event logging, compliance | FastAPI, PostgreSQL | Write-heavy optimization |
+
+**Communication Patterns:**
+- **Synchronous**: REST APIs for real-time requests
+- **Asynchronous**: Message queue (RabbitMQ/Kafka) for background jobs
+- **Event-Driven**: Event bus for cross-service notifications
+
+
+#### 3.6.3 Event-Driven Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                       Event Bus (Apache Kafka)                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Topics:                                                        │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐│
+│  │ site.created    │  │ permission.     │  │ compliance.     ││
+│  │ site.updated    │  │   changed       │  │   violation     ││
+│  │ site.deleted    │  │ user.added      │  │ alert.triggered ││
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘│
+└─────────────────────────────────────────────────────────────────┘
+         │                     │                     │
+    ┌────▼──────┐        ┌─────▼────┐        ┌──────▼──────┐
+    │ Analytics │        │ Audit    │        │ Notification│
+    │ Service   │        │ Service  │        │ Service     │
+    │ (Consumer)│        │(Consumer)│        │ (Consumer)  │
+    └───────────┘        └──────────┘        └─────────────┘
+```
+
+**Benefits:**
+- **Decoupling**: Services operate independently
+- **Scalability**: Handle millions of events per day
+- **Reliability**: Event replay for failure recovery
+- **Auditability**: Complete event history
+
+---
+
+### 3.7 Container Orchestration (Kubernetes)
+
+#### 3.7.1 Kubernetes Architecture
+
+```
+┌───────────────────────────────────────────────────────────────────────┐
+│                    Kubernetes Cluster Architecture                    │
+├───────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌─────────────────────────────────────────────────────────────┐    │
+│  │                      Control Plane                           │    │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │    │
+│  │  │ API Server  │  │  Scheduler  │  │   etcd      │         │    │
+│  │  └─────────────┘  └─────────────┘  └─────────────┘         │    │
+│  └─────────────────────────────────────────────────────────────┘    │
+│                                │                                      │
+│  ┌─────────────────────────────┼──────────────────────────────────┐ │
+│  │                       Worker Nodes                             │ │
+│  │                                                                │ │
+│  │  ┌────────────────────────────────────────────────────┐       │ │
+│  │  │           Namespace: sharepoint-gov-platform       │       │ │
+│  │  ├────────────────────────────────────────────────────┤       │ │
+│  │  │                                                    │       │ │
+│  │  │  ┌─────────────────┐  ┌─────────────────┐        │       │ │
+│  │  │  │  Frontend Pods  │  │  Backend Pods   │        │       │ │
+│  │  │  │  (React App)    │  │  (FastAPI)      │        │       │ │
+│  │  │  │  Replicas: 3    │  │  Replicas: 5    │        │       │ │
+│  │  │  └─────────────────┘  └─────────────────┘        │       │ │
+│  │  │                                                    │       │ │
+│  │  │  ┌─────────────────┐  ┌─────────────────┐        │       │ │
+│  │  │  │  ML Service     │  │  Redis Cache    │        │       │ │
+│  │  │  │  GPU: 1         │  │  Replicas: 3    │        │       │ │
+│  │  │  │  Replicas: 2    │  │  (Sentinel)     │        │       │ │
+│  │  │  └─────────────────┘  └─────────────────┘        │       │ │
+│  │  │                                                    │       │ │
+│  │  │  ┌──────────────────────────────────────┐        │       │ │
+│  │  │  │  StatefulSets: PostgreSQL            │        │       │ │
+│  │  │  │  Replicas: 3 (Primary + 2 Replicas)  │        │       │ │
+│  │  │  │  Persistent Volumes: 500GB each      │        │       │ │
+│  │  │  └──────────────────────────────────────┘        │       │ │
+│  │  └────────────────────────────────────────────────────       │ │
+│  │                                                                │ │
+│  │  ┌────────────────────────────────────────────────────┐       │ │
+│  │  │         Namespace: monitoring                      │       │ │
+│  │  ├────────────────────────────────────────────────────┤       │ │
+│  │  │  Prometheus, Grafana, Jaeger, ELK Stack           │       │ │
+│  │  └────────────────────────────────────────────────────┘       │ │
+│  │                                                                │ │
+│  │  ┌────────────────────────────────────────────────────┐       │ │
+│  │  │         Namespace: istio-system                    │       │ │
+│  │  ├────────────────────────────────────────────────────┤       │ │
+│  │  │  Service Mesh Components (Istio)                  │       │ │
+│  │  └────────────────────────────────────────────────────┘       │ │
+│  └────────────────────────────────────────────────────────────────┘ │
+└───────────────────────────────────────────────────────────────────────┘
+```
+
+#### 3.7.2 Deployment Strategy
+
+**1. Rolling Updates**
+- Zero-downtime deployments
+- Gradual pod replacement (20% at a time)
+- Automated rollback on health check failures
+
+**2. Blue-Green Deployment**
+- Parallel environments (Blue = production, Green = new version)
+- Instant traffic switching
+- Quick rollback capability
+
+**3. Canary Deployment**
+- Progressive rollout (5% → 25% → 50% → 100%)
+- Real-time metrics monitoring
+- A/B testing for new features
+
+#### 3.7.3 Auto-Scaling Configuration
+
+**Horizontal Pod Autoscaler (HPA):**
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend-api
+  minReplicas: 5
+  maxReplicas: 50
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: http_requests_per_second
+      target:
+        type: AverageValue
+        averageValue: "1000"
+```
+
+**Cluster Autoscaler:**
+- Automatically adds/removes nodes based on pending pods
+- Cost optimization by scaling down during low usage
+- Integration with cloud provider auto-scaling groups
+
+#### 3.7.4 Resource Management
+
+| Component | CPU Request | CPU Limit | Memory Request | Memory Limit |
+|-----------|------------|-----------|----------------|--------------|
+| Frontend Pod | 100m | 500m | 128Mi | 512Mi |
+| Backend Pod | 500m | 2000m | 512Mi | 2Gi |
+| ML Service | 2000m | 4000m | 4Gi | 8Gi |
+| PostgreSQL | 1000m | 4000m | 2Gi | 8Gi |
+| Redis | 250m | 1000m | 512Mi | 2Gi |
+
+**Quality of Service (QoS):**
+- **Guaranteed**: Critical services (Database, Auth)
+- **Burstable**: Application services (Backend, ML)
+- **BestEffort**: Batch jobs, non-critical workloads
+
+---
+
+### 3.8 Observability & Monitoring Stack
+
+#### 3.8.1 Three Pillars of Observability
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                      Observability Stack                       │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────┐│
+│  │   METRICS        │  │   LOGS           │  │   TRACES     ││
+│  │  (Prometheus)    │  │  (ELK/EFK)       │  │  (Jaeger)    ││
+│  └────────┬─────────┘  └────────┬─────────┘  └──────┬───────┘│
+│           │                     │                    │        │
+│  ┌────────▼─────────────────────▼────────────────────▼──────┐ │
+│  │                                                           │ │
+│  │              Unified Visualization Layer                 │ │
+│  │                    (Grafana)                             │ │
+│  │                                                           │ │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │ │
+│  │  │ Infra       │  │ Application │  │ Business    │     │ │
+│  │  │ Dashboards  │  │ Dashboards  │  │ Dashboards  │     │ │
+│  │  └─────────────┘  └─────────────┘  └─────────────┘     │ │
+│  └───────────────────────────────────────────────────────────┘ │
+│                                                                │
+│  ┌───────────────────────────────────────────────────────────┐│
+│  │              Alerting & Incident Management               ││
+│  │  (Prometheus AlertManager → PagerDuty/Opsgenie)          ││
+│  └───────────────────────────────────────────────────────────┘│
+└────────────────────────────────────────────────────────────────┘
+```
+
+#### 3.8.2 Metrics Collection (Prometheus + Grafana)
+
+**Infrastructure Metrics:**
+- Node CPU, Memory, Disk, Network utilization
+- Pod resource consumption
+- Cluster health and capacity
+
+**Application Metrics:**
+- Request rate, latency (p50, p95, p99)
+- Error rates by endpoint
+- Database query performance
+- Cache hit/miss ratios
+
+**Business Metrics:**
+- Active users, concurrent sessions
+- Sites scanned per hour
+- Compliance violations detected
+- Access reviews completed
+
+**Sample Grafana Dashboards:**
+1. **Executive Dashboard**: High-level KPIs, SLA compliance
+2. **Operations Dashboard**: System health, resource utilization
+3. **Security Dashboard**: Threat detection, anomaly alerts
+4. **Performance Dashboard**: Latency, throughput, saturation
+
+#### 3.8.3 Distributed Tracing (Jaeger)
+
+**Capabilities:**
+- End-to-end request tracing across microservices
+- Service dependency mapping
+- Performance bottleneck identification
+- Root cause analysis for errors
+
+**Example Trace:**
+```
+User Request → API Gateway (5ms) → Auth Service (120ms) → 
+Site Service (450ms) → Graph API (3500ms) → Database (80ms)
+Total Latency: 4155ms (Graph API identified as bottleneck)
+```
+
+**Integration:**
+- OpenTelemetry instrumentation
+- Automatic trace context propagation
+- Sampling strategies (100% for errors, 10% for success)
+
+#### 3.8.4 Centralized Logging (ELK/EFK Stack)
+
+**Architecture:**
+- **Elasticsearch**: Log storage and indexing
+- **Logstash/Fluentd**: Log aggregation and processing
+- **Kibana**: Log visualization and analysis
+
+**Log Categories:**
+1. **Application Logs**: DEBUG, INFO, WARN, ERROR levels
+2. **Access Logs**: HTTP requests, response codes, latency
+3. **Audit Logs**: Security events, permission changes
+4. **Infrastructure Logs**: Kubernetes events, node logs
+
+**Log Retention:**
+- Hot storage (SSD): Last 30 days for fast queries
+- Warm storage (HDD): 31-90 days for compliance
+- Cold storage (S3): 91 days - 7 years for archival
+
+#### 3.8.5 Application Performance Monitoring (APM)
+
+**New Relic / Datadog Integration:**
+- Real User Monitoring (RUM)
+- Synthetic monitoring (uptime checks)
+- Error tracking and crash reporting
+- Performance profiling
+
+**Alerting Strategy:**
+- **Critical**: Page on-call engineer immediately (P1)
+- **High**: Slack notification, create ticket (P2)
+- **Medium**: Email notification (P3)
+- **Low**: Dashboard indicator only (P4)
+
+---
+
+### 3.9 High Availability & Disaster Recovery
+
+#### 3.9.1 Multi-Region Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                     Global Load Balancer                         │
+│                   (AWS Route 53 / Azure Traffic Manager)         │
+└────────────┬──────────────────────────────┬───────────────────────┘
+             │                              │
+   ┌─────────▼─────────┐         ┌──────────▼──────────┐
+   │  Region: US-East  │         │  Region: US-West    │
+   │  (Primary)        │         │  (Secondary)        │
+   ├───────────────────┤         ├─────────────────────┤
+   │                   │         │                     │
+   │ ┌───────────────┐ │         │ ┌───────────────┐   │
+   │ │ K8s Cluster   │ │         │ │ K8s Cluster   │   │
+   │ │ (Active)      │ │         │ │ (Active)      │   │
+   │ └───────────────┘ │         │ └───────────────┘   │
+   │                   │         │                     │
+   │ ┌───────────────┐ │◄───────►│ ┌───────────────┐   │
+   │ │ PostgreSQL    │ │  Async  │ │ PostgreSQL    │   │
+   │ │ (Primary)     │ │  Repl.  │ │ (Replica)     │   │
+   │ └───────────────┘ │         │ └───────────────┘   │
+   └───────────────────┘         └─────────────────────┘
+             │                              │
+   ┌─────────▼──────────────────────────────▼─────────┐
+   │          Shared Object Storage (S3)              │
+   │        (Cross-Region Replication Enabled)        │
+   └──────────────────────────────────────────────────┘
+```
+
+**Active-Active Configuration:**
+- Both regions actively serve traffic
+- Geographic load balancing for performance
+- Automatic failover on region failure
+
+#### 3.9.2 RPO & RTO Targets
+
+| Tier | Service | RPO | RTO | Strategy |
+|------|---------|-----|-----|----------|
+| **Tier 1** | Core Platform | 5 minutes | 15 minutes | Multi-region active-active |
+| **Tier 2** | Analytics | 1 hour | 1 hour | Database replication |
+| **Tier 3** | ML Models | 24 hours | 4 hours | S3 backup, periodic sync |
+
+**RPO (Recovery Point Objective)**: Maximum acceptable data loss
+**RTO (Recovery Time Objective)**: Maximum acceptable downtime
+
+#### 3.9.3 Backup Strategy
+
+**Database Backups:**
+- **Continuous**: Write-Ahead Log (WAL) archiving to S3
+- **Automated**: Full backup daily at 2 AM UTC
+- **Point-in-Time Recovery**: Up to 30 days
+- **Cross-Region**: Backups replicated to secondary region
+
+**Application State Backups:**
+- Redis snapshots every 6 hours
+- Kubernetes etcd backups hourly
+- Configuration stored in Git (GitOps)
+
+**Testing:**
+- Monthly DR drills
+- Quarterly full failover tests
+- Automated validation of backup integrity
+
+#### 3.9.4 Chaos Engineering
+
+**Practice resilience through controlled failures:**
+- **Pod Chaos**: Random pod termination (Chaos Monkey)
+- **Network Chaos**: Latency injection, packet loss
+- **Resource Chaos**: CPU/memory exhaustion simulation
+- **Regional Failover**: Simulated region outages
+
+**Tools**: Chaos Mesh, Litmus Chaos, AWS Fault Injection Simulator
+
+---
+
+### 3.10 Zero Trust Security Architecture
+
+#### 3.10.1 Zero Trust Principles
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                   Zero Trust Security Model                    │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │    1. Verify Explicitly                              │    │
+│  │    - Multi-factor authentication (MFA)               │    │
+│  │    - Device health validation                        │    │
+│  │    - Location-based access control                   │    │
+│  └──────────────────────────────────────────────────────┘    │
+│                                                                │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │    2. Least Privilege Access                         │    │
+│  │    - Just-in-time (JIT) access                       │    │
+│  │    - Just-enough-access (JEA)                        │    │
+│  │    - Role-based + Attribute-based access control     │    │
+│  └──────────────────────────────────────────────────────┘    │
+│                                                                │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │    3. Assume Breach                                  │    │
+│  │    - Micro-segmentation                              │    │
+│  │    - End-to-end encryption                           │    │
+│  │    - Continuous monitoring & threat detection        │    │
+│  └──────────────────────────────────────────────────────┘    │
+└────────────────────────────────────────────────────────────────┘
+```
+
+#### 3.10.2 Implementation
+
+**Identity & Access:**
+- Conditional access policies (device compliance, location, risk)
+- Privileged access workstations (PAWs) for admins
+- Break-glass emergency access procedures
+
+**Network Security:**
+- Service mesh with mTLS (mutual TLS) for all service-to-service communication
+- Network policies in Kubernetes (deny-all by default)
+- Web Application Firewall (WAF) with OWASP Top 10 protection
+
+**Data Protection:**
+- Encryption at rest: AES-256 for databases, storage
+- Encryption in transit: TLS 1.3 minimum
+- Sensitive data masking in logs and monitoring
+
+**Continuous Verification:**
+- Real-time risk scoring for user sessions
+- Behavioral analytics for anomaly detection
+- Automated session termination on risk elevation
+
+#### 3.10.3 SIEM Integration
+
+**Security Information and Event Management:**
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                    SIEM (Splunk / Azure Sentinel)              │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  Data Sources:                                                 │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐              │
+│  │ Application│  │ K8s Events │  │ Firewall   │              │
+│  │ Logs       │  │            │  │ Logs       │              │
+│  └──────┬─────┘  └──────┬─────┘  └──────┬─────┘              │
+│         │               │               │                     │
+│  ┌──────▼───────────────▼───────────────▼─────┐              │
+│  │        Correlation Engine                   │              │
+│  │  - Attack pattern recognition               │              │
+│  │  - Multi-stage threat detection             │              │
+│  │  - User behavior analytics (UEBA)           │              │
+│  └──────┬──────────────────────────────────────┘              │
+│         │                                                       │
+│  ┌──────▼──────────────────────────────────────┐              │
+│  │        SOAR (Security Orchestration)        │              │
+│  │  - Automated incident response              │              │
+│  │  - Playbook execution                       │              │
+│  │  - Threat intelligence enrichment           │              │
+│  └─────────────────────────────────────────────┘              │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**Use Cases:**
+1. **Insider Threat Detection**: Unusual permission changes, bulk downloads
+2. **Compromised Account Detection**: Login from unusual location/time
+3. **Lateral Movement Detection**: Service-to-service communication anomalies
+4. **Data Exfiltration Prevention**: Large outbound data transfers
+
+---
+
+
 
 ## 4. Implementation Approach
 
@@ -554,15 +1273,16 @@ This initiative aligns with:
 - Power BI integration
 - Multi-tenant support
 
-### 4.2 POC Timeline (8 Weeks)
+### 4.2 POC Timeline (10 Weeks)
 
 | Week | Milestone | Deliverables |
-|------|-----------|--------------|
-| 1-2 | **Environment Setup** | Infrastructure provisioned, integrations configured |
-| 3-4 | **Core Deployment** | Application installed, database migrated, initial data loaded |
-| 5-6 | **Configuration & Testing** | Policies configured, user training, UAT |
-| 7 | **Pilot Launch** | 100 users onboarded, monitoring active |
-| 8 | **Evaluation & Report** | Success metrics measured, final presentation |
+|------|-----------|-----------------|
+| 1-2 | **Infrastructure & K8s Setup** | Kubernetes cluster provisioned, CI/CD pipeline configured, observability stack deployed |
+| 3-4 | **Microservices Deployment** | Core services deployed, API Gateway configured, service mesh implemented |
+| 5-6 | **AI/ML Integration** | ML models trained, predictive analytics deployed, anomaly detection activated |
+| 7-8 | **Security & Compliance** | Zero Trust configured, SIEM integrated, security testing completed |
+| 9 | **Pilot Launch** | 100 users onboarded, all monitoring active, HA/DR validated |
+| 10 | **Evaluation & Report** | Success metrics measured, ROI validated, executive presentation |
 
 ### 4.3 Prerequisites
 
