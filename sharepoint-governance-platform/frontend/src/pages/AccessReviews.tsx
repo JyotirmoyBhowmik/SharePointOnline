@@ -1,14 +1,15 @@
-import { Typography } from '@mui/material'
+import React from 'react';
+import Typography from '@mui/material/Typography';
 
-export default function AccessReviews() {
-    return (
-        <div>
-            <Typography variant="h4" gutterBottom>
-                Access Reviews
-            </Typography>
-            <Typography variant="body1">
-                Access review listing will be implemented here.
-            </Typography>
-        </div>
-    )
-}
+const AccessReviews: React.FC = () => (
+    <div>
+        <Typography variant="h4" gutterBottom>
+            Access Reviews
+        </Typography>
+        <Typography variant="body1">
+            Access review listing will be implemented here.
+        </Typography>
+    </div>
+);
+
+export default AccessReviews;

@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-const api = axios.create({
+const api: AxiosInstance = axios.create({
     baseURL: '/api/v1',
     headers: {
         'Content-Type': 'application/json',

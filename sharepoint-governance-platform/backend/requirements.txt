@@ -77,4 +77,3 @@ bandit==1.7.6
 Pillow==10.1.0  # Image processing for reports
 
 # Security
-safety==3.0.1

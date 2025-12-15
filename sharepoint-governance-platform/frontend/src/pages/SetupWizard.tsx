@@ -15,7 +15,7 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    DialogActions,
+    DialogActions
 } from '@mui/material'
 import { Help, CheckCircle } from '@mui/icons-material'
 

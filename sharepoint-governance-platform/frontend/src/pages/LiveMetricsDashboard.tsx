@@ -10,8 +10,11 @@
  *   Shows key metrics like total sites, pending reviews, storage usage, and anomalies.
  */
 
-import { FC } from 'react';
-import { Grid, Container, Typography, Box } from '@mui/material';
+import React, { FC } from 'react';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import MetricWidget from '../components/MetricWidget';
 import StorageIcon from '@mui/icons-material/Storage';
 import AssignmentIcon from '@mui/icons-material/Assignment';

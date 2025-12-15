@@ -14,10 +14,10 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
-    TextField,
-} from '@mui/material'
-import { Security, Shield, Devices } from '@mui/icons-material'
-import TwoFactorSetup, { TrustedDevices } from '../components/TwoFactorSetup'
+    TextField
+} from '@mui/material';
+import { Security, Shield, Devices } from '@mui/icons-material';
+import TwoFactorSetup, { TrustedDevices } from '../components/TwoFactorSetup';
 
 interface TwoFactorStatus {
     enabled: boolean

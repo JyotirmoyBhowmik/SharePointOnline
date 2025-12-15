@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 
-export default function Dashboard() {
+export default function Dashboard(): JSX.Element {
     return (
         <div>
             <Typography variant="h4" gutterBottom>
