@@ -92,7 +92,7 @@ const SiteDetailsModal: React.FC<SiteDetailsModalProps> = ({
         }
     };
 
-    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
         setCurrentTab(newValue);
         // Update breadcrumb based on tab
         const tabNames = ['Overview', 'Access Matrix', 'Reviews', 'Audit History'];

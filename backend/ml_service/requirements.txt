@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+scikit-learn
+numpy
+pandas
+fastapi
+uvicorn
+pydantic
+scikit-learn
+numpy
+pandas
+

@@ -35,6 +35,16 @@ An automated governance platform that provides:
 | **Efficiency** | 60% reduction in manual governance tasks |
 | **Cost Savings** | $250K+ annually in labor and risk mitigation |
 
+**Benefits Visualization (Mermaid):**
+```mermaid
+pie showData
+  title Governance Benefits Distribution
+  "Risk Reduction (Security)" : 35
+  "Compliance & Audit Readiness" : 25
+  "Operational Efficiency" : 20
+  "Cost Savings" : 20
+```
+
 ### Investment Required
 - **POC Duration:** 10 weeks (extended for AI/ML and advanced features)
 - **POC Budget:** $150,000 (includes AI/ML, K8s setup, observability stack)
@@ -93,6 +103,19 @@ This initiative aligns with:
 | **FR-006** | High | Two-factor authentication integration |
 | **FR-007** | Medium | AI-powered anomaly detection |
 | **FR-008** | Medium | Retention policy management |
+
+**Requirement-to-Feature Mapping (Mermaid):**
+```mermaid
+flowchart LR
+  FR001["FR-001 Automated Discovery"] --> KF1["Feature 1: Automated Site Discovery"]
+  FR002["FR-002 Permission Monitoring"] --> KF2["Feature 2: Permission Analytics"]
+  FR003["FR-003 Compliance Enforcement"] --> KF3["Feature 3: Compliance Monitoring"]
+  FR004["FR-004 Access Reviews"] --> KF4["Feature 4: Access Review Workflows"]
+  FR005["FR-005 Dashboards"] --> KF5["Feature 5: Executive Dashboards"]
+  FR006["FR-006 Two-Factor Auth"] --> KF6["Feature 6: Two-Factor Authentication"]
+  FR007["FR-007 AI Anomaly Detection"] --> KF7["Feature 7: AI-Powered Anomaly Detection"]
+  FR008["FR-008 Retention Policy Mgmt"] --> KF8["Feature 8: Retention Policy Management"]
+```
 
 ### 2.2 Business Objectives
 
@@ -473,6 +496,49 @@ This initiative aligns with:
                    └───────────────────┘          │                    │
 ```
 
+### 3.3 Key Features
+
+**1. Automated Site Discovery (FR-001)**
+- Scans entire SharePoint tenant
+- Discovers all sites, libraries, and permissions
+- Creates comprehensive inventory
+
+**2. Permission Analytics (FR-002)**
+- Identifies over-privileged users
+- Detects permission inheritance breaks
+- Flags external sharing risks
+
+**3. Compliance Monitoring (FR-003)**
+- Automated policy checks (daily)
+- Regulatory framework mapping
+- Non-compliance alerting
+
+**4. Access Review Workflows (FR-004)**
+- Scheduled permission recertification
+- Manager approval workflows
+- Automated remediation
+
+**5. Executive Dashboards (FR-005)**
+- Real-time governance metrics
+- Security posture scoring
+- Trend analysis and forecasting
+
+**6. Two-Factor Authentication (FR-006)**
+- TOTP integration (Google/Microsoft Authenticator)
+- Trusted device management
+- Backup code recovery
+
+**7. AI-Powered Anomaly Detection (FR-007)**
+- Behavioral baselining for users/sites
+- Real-time anomaly alerts on unusual access/activity
+- Risk scoring feeds executive dashboards and remediation workflows
+
+**8. Retention Policy Management (FR-008)**
+- Microsoft Purview retention policy synchronization
+- Site/library exclusion workflows for exceptional cases
+- Compliance reporting across retention scope
+- Automated policy enforcement with audit trails
+
 ### 3.4 Technology Stack
 
 **Frontend:**
@@ -502,37 +568,15 @@ This initiative aligns with:
 - TLS 1.3 for data in transit
 - Role-based access control (RBAC)
 
-### 3.3 Key Features
-
-**1. Automated Site Discovery**
-- Scans entire SharePoint tenant
-- Discovers all sites, libraries, and permissions
-- Creates comprehensive inventory
-
-**2. Permission Analytics**
-- Identifies over-privileged users
-- Detects permission inheritance breaks
-- Flags external sharing risks
-
-**3. Compliance Monitoring**
-- Automated policy checks (daily)
-- Regulatory framework mapping
-- Non-compliance alerting
-
-**4. Access Review Workflows**
-- Scheduled permission recertification
-- Manager approval workflows
-- Automated remediation
-
-**5. Executive Dashboards**
-- Real-time governance metrics
-- Security posture scoring
-- Trend analysis and forecasting
-
-**6. Two-Factor Authentication**
-- TOTP integration (Google/Microsoft Authenticator)
-- Trusted device management
-- Backup code recovery
+**Technology Stack Visualization (Mermaid):**
+```mermaid
+flowchart LR
+  FE["React + TypeScript (MUI, Redux, Chart.js)"] --> API["FastAPI + Celery"]
+  API --> DB["PostgreSQL"]
+  API --> Cache["Redis"]
+  API --> Integrations["Microsoft Graph API / Azure AD / LDAP"]
+  API --> Security["JWT + 2FA + RBAC"]
+```
 
 ### 3.5 AI/ML Architecture & Capabilities
 
@@ -601,6 +645,33 @@ The platform leverages artificial intelligence and machine learning to transform
 │  │  └──────────────┘  └──────────────┘  └──────────────┘         │  │
 │  └─────────────────────────────────────────────────────────────────  │
 └────────────────────────────────────────────────────────────────────────┘
+```
+
+**System Architecture (Mermaid):**
+```mermaid
+flowchart TB
+  subgraph Users
+    Exec[Executives]
+    Managers[Managers]
+    Compliance[Compliance Officers]
+    IT[IT Admins]
+  end
+
+  LB[Load Balancer / CDN]
+  FE[React SPA\nPort 3000]
+  API[FastAPI Backend\nPort 8000]
+  Cache[Redis 7]
+  DB[PostgreSQL 15]
+  Jobs[Celery Workers]
+  Graph[Microsoft Graph API]
+  AD[Azure AD / LDAP]
+
+  Users --> LB --> FE --> API
+  API --> Cache
+  API --> DB
+  API --> Jobs
+  API --> Graph
+  API --> AD
 ```
 
 #### 3.5.2 Predictive Analytics Capabilities
@@ -1402,6 +1473,27 @@ Total Latency: 4155ms (Graph API identified as bottleneck)
 | **Compliance gaps** | Regular compliance audits, policy updates |
 | **Skill gaps in IT team** | Comprehensive training, vendor support |
 
+**Risk Matrix (Mermaid):**
+```mermaid
+flowchart LR
+  subgraph Impact
+    HighI[High Impact]
+    MedI[Medium Impact]
+    LowI[Low Impact]
+  end
+  subgraph Probability
+    HighP[High Probability]
+    MedP[Medium Probability]
+    LowP[Low Probability]
+  end
+
+  HighP --> |Critical| Integration["Integration Complexity\n(Medium P / High I)"]
+  MedP --> |Monitor| Adoption["User Adoption Resistance\n(Medium P / Medium I)"]
+  LowP --> |Watch| Migration["Data Migration Issues\n(Low P / High I)"]
+  LowP --> |Protect| Performance["Performance at Scale\n(Low P / Medium I)"]
+  LowP --> |Protect| Security["Security Vulnerabilities\n(Low P / Critical I)"]
+```
+
 ---
 
 ## 8. Administration & Management
@@ -1464,15 +1556,37 @@ The POC will be considered successful if:
 **End of Week 4:** Technical checkpoint
 - Go/No-Go decision based on integration success
 
-**End of Week 8:** POC completion
+**End of Week 10:** POC completion
 - Approve for Phase 2 implementation
 - Require modifications
 - Discontinue project
 
+**Timeline (Mermaid Gantt, 10 Weeks):**
+```mermaid
+gantt
+  title POC Timeline (10 Weeks)
+  dateFormat  YYYY-MM-DD
+  axisFormat  "Week %U"
+  section Planning
+  Approve Budget & Sponsor      :done,    2025-12-08, 7d
+  Azure Provisioning            :active,  2025-12-08, 7d
+  section Build & Integrate
+  Deploy POC Environment        :2025-12-15, 14d
+  Configure Integrations        :2025-12-15, 21d
+  Admin Training                :2025-12-22, 14d
+  section Pilot
+  Pilot Onboarding              :2025-12-29, 21d
+  Access Reviews & Feedback     :2026-01-05, 21d
+  section Validation
+  Success Metrics Measurement   :2026-01-12, 21d
+  UAT & Remediation             :2026-01-19, 21d
+  Final POC Review              :2026-02-10, 7d
+```
+
 ### 9.3 Recommended Actions
 
 **Immediate (Week 1):**
-1. **Approve POC budget** ($75,000)
+1. **Approve POC budget** ($150,000)
 2. **Assign executive sponsor** (CIO or CISO)
 3. **Provision Azure resources** (App Registration)
 4. **Select pilot user group** (100 users)
@@ -1507,7 +1621,7 @@ The SharePoint Governance Platform addresses critical governance, compliance, an
 - **Proactive security posture** vs. reactive incident response
 
 ### Recommendation
-**Approve the 8-week POC** to validate the solution and prepare for enterprise rollout. The $75,000 investment provides a low-risk opportunity to demonstrate value before committing to full implementation.
+**Approve the 10-week POC** to validate the solution and prepare for enterprise rollout. The $150,000 investment provides a low-risk opportunity to demonstrate value before committing to full implementation.
 
 ---
 

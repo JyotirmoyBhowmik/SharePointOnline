@@ -215,7 +215,7 @@ const RetentionPolicyDashboard: React.FC = () => {
 
             {/* Tabs */}
             <Paper sx={{ mb: 3 }}>
-                <Tabs value={currentTab} onChange={(e, v) => setCurrentTab(v)}>
+                <Tabs value={currentTab} onChange={(_, v) => setCurrentTab(v)}>
                     <Tab label="Policies" />
                     <Tab label="Exclusion Requests" />
                     <Tab label="Compliance Report" />
