@@ -1,18 +1,24 @@
 # Multi-stage build for Python FastAPI backend
 
+
 # Development stage
 FROM python:3.11-slim as development
 
 WORKDIR /app
 
- # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    gcc \
-    postgresql-client \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+#RUN apt-get update && apt-get install -y \
+#   libpq-dev \
+#    && rm -rf /var/lib/apt/lists/*
 
+
+RUN apt-get update && apt-get install -y \
+  gcc \
+  build-essential \
+  libldap2-dev \
+  libsasl2-dev \
+  libssl-dev \
+  && rm -rf /var/lib/apt/lists/*    
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -34,9 +40,9 @@ RUN useradd -m -u 1000 appuser
 
 # Install system dependencies (minimal for production)
 RUN apt-get update && apt-get install -y \
-    libpq5 \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+  libpq5 \
+  curl \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
