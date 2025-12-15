@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     # Background Jobs (cron expressions)
     SITE_DISCOVERY_SCHEDULE_CRON: str = "0 2 * * *"  # 2 AM daily
     AUDIT_SYNC_SCHEDULE_CRON: str = "0 */6 * * *"  # Every 6 hours
-    ACCESS_REVIEW_SCHEDULE_CRON: str = "0 0 1 */3 *"  # 1st of quarter
+    ACCESS_REVIEW_SCHEDULE_CRON: str = "0 0 1 1,4,7,10 *"  # Quarterly (1st day of Jan, Apr, Jul, Oct)
     USER_SYNC_SCHEDULE_CRON: str = "0 1 * * *"  # 1 AM daily
     
     # Rate Limiting
@@ -102,12 +102,6 @@ class Settings(BaseSettings):
     AUDIT_LOG_RETENTION_MONTHS: int = 12
     ACCESS_REVIEW_RETENTION_YEARS: int = 7
     SYSTEM_LOG_RETENTION_DAYS: int = 30
-    
-    # Background job schedules (cron format) - New section added
-    SITE_DISCOVERY_SCHEDULE_CRON: str = "0 2 * * *"  # Daily at 2 AM
-    AUDIT_SYNC_SCHEDULE_CRON: str = "0 */6 * * *"  # Every 6 hours
-    USER_SYNC_SCHEDULE_CRON: str = "0 1 * * *"  # Daily at 1 AM
-    ACCESS_REVIEW_SCHEDULE_CRON: str = "0 0 1 1,4,7,10 *"  # Quarterly
     
     class Config:
         env_file = ".env"
