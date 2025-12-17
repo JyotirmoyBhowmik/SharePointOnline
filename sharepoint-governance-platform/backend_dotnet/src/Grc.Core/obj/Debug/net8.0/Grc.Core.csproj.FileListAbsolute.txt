@@ -1,0 +1,12 @@
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/bin/Debug/net8.0/Grc.Core.deps.json
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/bin/Debug/net8.0/Grc.Core.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/bin/Debug/net8.0/Grc.Core.pdb
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.AssemblyInfoInputs.cache
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.AssemblyInfo.cs
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.csproj.CoreCompileInputs.cache
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.sourcelink.json
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/refint/Grc.Core.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/Grc.Core.pdb
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Core/obj/Debug/net8.0/ref/Grc.Core.dll

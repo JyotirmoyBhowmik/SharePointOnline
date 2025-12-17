@@ -1,0 +1,16 @@
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/bin/Debug/net8.0/Grc.Workflows.deps.json
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/bin/Debug/net8.0/Grc.Workflows.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/bin/Debug/net8.0/Grc.Workflows.pdb
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/bin/Debug/net8.0/Grc.Core.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/bin/Debug/net8.0/Grc.Core.pdb
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.csproj.AssemblyReference.cache
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.GeneratedMSBuildEditorConfig.editorconfig
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.AssemblyInfoInputs.cache
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.AssemblyInfo.cs
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.csproj.CoreCompileInputs.cache
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.sourcelink.json
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Work.4D45CC28.Up2Date
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/refint/Grc.Workflows.dll
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/Grc.Workflows.pdb
+/home/genai/Documents/SharePointOnline/sharepoint-governance-platform/backend_dotnet/src/Grc.Workflows/obj/Debug/net8.0/ref/Grc.Workflows.dll

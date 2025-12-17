@@ -1,0 +1,6 @@
+@Grc.Api_HostAddress = http://localhost:5052
+
+GET {{Grc.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
